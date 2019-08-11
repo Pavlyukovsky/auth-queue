@@ -38,3 +38,23 @@ docker-compose up -d --force-recreate
 ### RabbitMQ management
 [http://localhost:15672/](http://localhost:15672/) **[guest:guest]**
 
+### Documentation
+
+- User can registrations via method `auth/registration`[post].
+- User can login via method `auth/login`['post'].
+- User can logout via method `auth/logout`['post'].
+
+After every request will write analytics in `BaseController` `afterAction()`. Check user, if login to get `user id` and push task to `Queue`(FILE) else check `guest user id` or generate `guest user id` and push to Queue.
+
+```
+./yii queue/clear                Clears the queue.
+./yii queue/exec                 Executes a job.
+./yii queue/info (default)       Info about queue status.
+./yii queue/listen               Listens file-queue and runs new jobs.
+./yii queue/remove               Removes a job by id.
+./yii queue/run                  Runs all jobs from file-queue.
+```
+
+```
+./yii queue/listen  #this can write into crontab.
+```
